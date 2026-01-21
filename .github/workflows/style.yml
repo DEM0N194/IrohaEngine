@@ -17,6 +17,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      CXX: g++-14
+
     steps:
       - uses: actions/checkout@v3
 
@@ -24,12 +27,12 @@ jobs:
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
-
+      
       - name: Install format dependencies
         run: pip3 install clang-format cmake_format pyyaml
 
       - name: configure
-        run: cmake -Stest -Bbuild
+        run: cmake -Ssource/tests -Bbuild
 
       - name: check style
         run: cmake --build build --target check-format

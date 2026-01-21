@@ -1,5 +1,6 @@
-/build*
 /.vscode
 /.vs
+/build
+/out
 /cpm_modules
 .DS_Store
